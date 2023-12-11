@@ -1,0 +1,38 @@
+spring:
+  config:
+    import: env.properties
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:${POSTGRES_PORT}/${POSTGRES_DB}
+    username: ${POSTGRES_USER}
+    password: ${POSTGRES_PASSWORD}
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+talaria:
+  control-plane: ${CONTROL_PLANE_DOMAIN}
+  nginx-container: ${NGINX_CONTAINER_NAME}
+
+log:
+  access:
+    base: var/log/nginx/shared/access_current
+    shared:
+      root: var/log/nginx/shared
+      current: var/log/nginx/shared/access_current.log
+      success: var/log/nginx/shared/access_200.log
+      fail: var/log/nginx/shared/access_400.log
+      serverfail: var/log/nginx/shared/access_500.log
+    old:
+      root: var/log/nginx/olds/
+      current: var/log/nginx/olds/access_current.log.1
+      success: var/log/nginx/olds/access_200.log.1
+      fail: var/log/nginx/olds/access_400.log.1
+      serverfail: var/log/nginx/olds/access_500.log.1
+  error:
+    base: var/log/nginx/shared/error_current
+    shared:
+      current: var/log/nginx/shared/error_current.log
