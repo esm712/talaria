@@ -4,7 +4,7 @@ services:
   monitoring-database:
     image: postgres:latest
     volumes:
-      - "./init.sql:/docker-entrypoint-initdb.d/init.sql"
+      - "./init-batch.sql:/docker-entrypoint-initdb.d/init-batch.sql"
     restart: always
     environment:
       - POSTGRES_USER=postgres
